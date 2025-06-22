@@ -1,0 +1,25 @@
+# Node
+node_modules/
+
+# Python
+__pycache__/
+*.pyc
+*.sqlite3
+
+# Environment
+.env
+*.env
+
+# Logs
+*.log
+
+# Lock files
+*.lock
+
+# VS Code
+.vscode/
+
+# System
+.DS_Store
+Thumbs.db
+*.mp4
