@@ -68,7 +68,7 @@ export const login = (username, password) => async (dispatch) => {
         }
 
         const { data } = await axios.post(
-            '/account/login/',
+            `${process.env.REACT_APP_BACKEND_URL}/account/login/`,
             { 'username': username, 'password': password },
             config
         )
@@ -78,8 +78,7 @@ export const login = (username, password) => async (dispatch) => {
             payload: data
         })
 
-        localStorage.setItem('userInfo', JSON.stringify(data)) // will create a new key-value pair in localStorage
-        // also see store.js file
+        localStorage.setItem('userInfo', JSON.stringify(data))
 
     } catch (error) {
         dispatch({
@@ -111,7 +110,8 @@ export const register = (username, email, password) => async (dispatch) => {
             }
         }
 
-        const { data } = await axios.post(`/account/register/`,
+        const { data } = await axios.post(
+            `${process.env.REACT_APP_BACKEND_URL}/account/register/`,
             { 'username': username, 'email': email, 'password': password },
             config
         )
@@ -139,7 +139,6 @@ export const register = (username, email, password) => async (dispatch) => {
 // check token validation
 export const checkTokenValidation = () => async (dispatch, getState) => {
     try {
-
         dispatch({
             type: CHECK_TOKEN_VALID_REQUEST
         })
@@ -155,8 +154,10 @@ export const checkTokenValidation = () => async (dispatch, getState) => {
             }
         }
 
-        // call api
-        const { data } = await axios.get("/payments/check-token/", config)
+        const { data } = await axios.get(
+            `${process.env.REACT_APP_BACKEND_URL}/payments/check-token/`, 
+            config
+        )
 
         dispatch({
             type: CHECK_TOKEN_VALID_SUCCESS,
@@ -171,13 +172,9 @@ export const checkTokenValidation = () => async (dispatch, getState) => {
     }
 }
 
-
-
 // user details
 export const userDetails = (id) => async (dispatch, getState) => {
-
     try {
-
         dispatch({
             type: USER_DETAILS_REQUEST
         })
@@ -193,8 +190,10 @@ export const userDetails = (id) => async (dispatch, getState) => {
             }
         }
 
-        // call api
-        const { data } = await axios.get(`/account/user/${id}`, config)
+        const { data } = await axios.get(
+            `${process.env.REACT_APP_BACKEND_URL}/account/user/${id}`,
+            config
+        )
 
         dispatch({
             type: USER_DETAILS_SUCCESS,
@@ -211,9 +210,7 @@ export const userDetails = (id) => async (dispatch, getState) => {
 
 // user update details
 export const userUpdateDetails = (userData) => async (dispatch, getState) => {
-
     try {
-
         dispatch({
             type: UPDATE_USER_DETAILS_REQUEST
         })
@@ -229,9 +226,8 @@ export const userUpdateDetails = (userData) => async (dispatch, getState) => {
             }
         }
 
-        // call api
         const { data } = await axios.put(
-            `/account/user_update/${userInfo.id}/`,
+            `${process.env.REACT_APP_BACKEND_URL}/account/user_update/${userInfo.id}/`,
             {
                 "username": userData.username,
                 "email": userData.email,
@@ -253,12 +249,9 @@ export const userUpdateDetails = (userData) => async (dispatch, getState) => {
     }
 }
 
-
 // user account delete
 export const userAccountDelete = (userData) => async (dispatch, getState) => {
-
     try {
-
         dispatch({
             type: DELETE_USER_ACCOUNT_REQUEST
         })
@@ -274,9 +267,8 @@ export const userAccountDelete = (userData) => async (dispatch, getState) => {
             }
         }
 
-        // call api
         const { data } = await axios.post(
-            `/account/user_delete/${userData.id}/`,
+            `${process.env.REACT_APP_BACKEND_URL}/account/user_delete/${userData.id}/`,
             {
                 "password": userData.password
             },
@@ -296,7 +288,6 @@ export const userAccountDelete = (userData) => async (dispatch, getState) => {
     }
 }
 
-
 // get user address
 export const getAllAddress = () => async (dispatch, getState) => {
     try {
@@ -315,9 +306,8 @@ export const getAllAddress = () => async (dispatch, getState) => {
             }
         }
 
-        // call api
         const { data } = await axios.get(
-            "/account/all-address-details/",
+            `${process.env.REACT_APP_BACKEND_URL}/account/all-address-details/`,
             config
         )
 
@@ -333,7 +323,6 @@ export const getAllAddress = () => async (dispatch, getState) => {
         })
     }
 }
-
 
 // get user single address
 export const getSingleAddress = (id) => async (dispatch, getState) => {
@@ -353,9 +342,8 @@ export const getSingleAddress = (id) => async (dispatch, getState) => {
             }
         }
 
-        // call api
         const { data } = await axios.get(
-            `/account/address-details/${id}/`,
+            `${process.env.REACT_APP_BACKEND_URL}/account/address-details/${id}/`,
             config
         )
 
@@ -372,10 +360,8 @@ export const getSingleAddress = (id) => async (dispatch, getState) => {
     }
 }
 
-
 // create user address
 export const createUserAddress = (addressData) => async (dispatch, getState) => {
-
     try {
         dispatch({
             type: CREATE_USER_ADDRESS_REQUEST
@@ -392,9 +378,8 @@ export const createUserAddress = (addressData) => async (dispatch, getState) => 
             }
         }
 
-        // call api
         const { data } = await axios.post(
-            "/account/create-address/",
+            `${process.env.REACT_APP_BACKEND_URL}/account/create-address/`,
             addressData,
             config
         )
@@ -411,7 +396,6 @@ export const createUserAddress = (addressData) => async (dispatch, getState) => 
         })
     }
 }
-
 
 // update user address
 export const updateUserAddress = (id, addressData) => async (dispatch, getState) => {
@@ -431,9 +415,8 @@ export const updateUserAddress = (id, addressData) => async (dispatch, getState)
             }
         }
 
-        // call api
         const { data } = await axios.put(
-            `/account/update-address/${id}/`,
+            `${process.env.REACT_APP_BACKEND_URL}/account/update-address/${id}/`,
             addressData,
             config
         )
@@ -450,7 +433,6 @@ export const updateUserAddress = (id, addressData) => async (dispatch, getState)
         })
     }
 }
-
 
 // delete user address
 export const deleteUserAddress = (id) => async (dispatch, getState) => {
@@ -470,9 +452,8 @@ export const deleteUserAddress = (id) => async (dispatch, getState) => {
             }
         }
 
-        // call api
         const { data } = await axios.delete(
-            `/account/delete-address/${id}/`,
+            `${process.env.REACT_APP_BACKEND_URL}/account/delete-address/${id}/`,
             config
         )
 
@@ -507,9 +488,8 @@ export const getAllOrders = () => async (dispatch, getState) => {
             }
         }
 
-        // call api
         const { data } = await axios.get(
-            `/account/all-orders-list/`,
+            `${process.env.REACT_APP_BACKEND_URL}/account/all-orders-list/`,
             config
         )
 
