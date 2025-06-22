@@ -1,8 +1,11 @@
 {
   "name": "frontend",
   "version": "0.1.0",
-  "proxy": "http://127.0.0.1:8000",
   "private": true,
+  "proxy": "http://127.0.0.1:8000",
+  "engines": {
+    "node": "16"
+  },
   "dependencies": {
     "@stripe/react-stripe-js": "^1.4.1",
     "@stripe/stripe-js": "^1.15.0",
@@ -49,3 +52,4 @@
     ]
   }
 }
+
