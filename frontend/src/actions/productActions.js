@@ -36,7 +36,7 @@ export const getProductsList = () => async (dispatch) => {
         })
 
         // call api
-        const { data } = await axios.get("/api/products/")
+        const { data } = await axios.get(`${process.env.REACT_APP_BACKEND_URL}/api/products/`)
 
         dispatch({
             type: PRODUCTS_LIST_SUCCESS,
@@ -59,7 +59,7 @@ export const getProductDetails = (id) => async (dispatch) => {
         })
 
         // call api
-        const { data } = await axios.get(`/api/product/${id}/`)
+        const { data } = await axios.get(`${process.env.REACT_APP_BACKEND_URL}/api/product/${id}/`)
 
         dispatch({
             type: PRODUCT_DETAILS_SUCCESS,
@@ -96,7 +96,7 @@ export const createProduct = (product) => async (dispatch, getState) => {
 
         // api call
         const { data } = await axios.post(
-            "/api/product-create/",
+            `${process.env.REACT_APP_BACKEND_URL}/api/product-create/`,
             product,
             config
         )
@@ -134,7 +134,7 @@ export const deleteProduct = (id) => async (dispatch, getState) => {
 
         // api call
         const { data } = await axios.delete(
-            `/api/product-delete/${id}/`,
+            `${process.env.REACT_APP_BACKEND_URL}/api/product-delete/${id}/`,
             config
         )
 
@@ -173,7 +173,7 @@ export const updateProduct = (id, product) => async (dispatch, getState) => {
 
         // api call
         const { data } = await axios.put(
-            `/api/product-update/${id}/`,
+            `${process.env.REACT_APP_BACKEND_URL}/api/product-update/${id}/`,
             product,
             config
         )
@@ -214,7 +214,7 @@ export const changeDeliveryStatus = (id, product) => async (dispatch, getState) 
 
         // api call
         const { data } = await axios.put(
-            `/account/change-order-status/${id}/`,
+            `${process.env.REACT_APP_BACKEND_URL}/account/change-order-status/${id}/`,
             product,
             config
         )

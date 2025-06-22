@@ -46,7 +46,7 @@ export const createCard = (cardData) => async (dispatch, getState) => {
 
         // api call
         const { data } = await axios.post(
-            "/payments/create-card/",
+            `${process.env.REACT_APP_BACKEND_URL}/payments/create-card/`,
             {
                 'email': cardData.email,
                 'number': cardData.cardNumber,
@@ -94,7 +94,7 @@ export const chargeCustomer = (cardData) => async (dispatch, getState) => {
 
         // api call
         const { data } = await axios.post(
-            "/payments/charge-customer/",
+            `${process.env.REACT_APP_BACKEND_URL}/payments/charge-customer/`,
             cardData,
             config
         )
@@ -133,7 +133,7 @@ export const savedCardsList = () => async (dispatch, getState) => {
         }
 
         // api call
-        const { data } = await axios.get('/account/stripe-cards/', config)
+        const { data } = await axios.get(`${process.env.REACT_APP_BACKEND_URL}/account/stripe-cards/`, config)
 
         dispatch({
             type: SAVED_CARDS_LIST_SUCCESS,
@@ -171,7 +171,7 @@ export const updateStripeCard = (cardData) => async (dispatch, getState) => {
 
         // api call
         const { data } = await axios.post(
-            "/payments/update-card/",
+            `${process.env.REACT_APP_BACKEND_URL}/payments/update-card/`,
             cardData,
             config
         )
@@ -184,47 +184,6 @@ export const updateStripeCard = (cardData) => async (dispatch, getState) => {
     } catch (error) {
         dispatch({
             type: UPDATE_STRIPE_CARD_FAIL,
-            payload: error.response && error.response.data.detail ? error.response.data.detail : error.message
-        })
-    }
-}
-
-
-
-// delete saved card
-export const deleteSavedCard = (card_number) => async (dispatch, getState) => {
-
-    try {
-        dispatch({
-            type: DELETE_SAVED_CARD_REQUEST,
-        })
-
-        const {
-            userLoginReducer: { userInfo }
-        } = getState()
-
-        const config = {
-            headers: {
-                "Content-Type": "application/json",
-                Authorization: `Bearer ${userInfo.token}`
-            }
-        }
-
-        // api call
-        const { data } = await axios.post(
-            '/payments/delete-card/',
-            { "card_number": card_number },
-            config
-        )
-
-        dispatch({
-            type: DELETE_SAVED_CARD_SUCCESS,
-            payload: data
-        })
-
-    } catch (error) {
-        dispatch({
-            type: DELETE_SAVED_CARD_FAIL,
             payload: error.response && error.response.data.detail ? error.response.data.detail : error.message
         })
     }
