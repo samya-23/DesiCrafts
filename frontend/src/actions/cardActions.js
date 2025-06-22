@@ -188,3 +188,43 @@ export const updateStripeCard = (cardData) => async (dispatch, getState) => {
         })
     }
 }
+// delete saved card
+export const deleteSavedCard = (cardNumber) => async (dispatch, getState) => {
+    try {
+        dispatch({
+            type: DELETE_SAVED_CARD_REQUEST
+        });
+
+        const {
+            userLoginReducer: { userInfo },
+        } = getState();
+
+        const config = {
+            headers: {
+                "Content-Type": "application/json",
+                Authorization: `Bearer ${userInfo.token}`,
+                "Card-Number": cardNumber,
+            }
+        };
+
+        // API call to delete card
+        const { data } = await axios.delete(
+            `${process.env.REACT_APP_BACKEND_URL}/account/delete-card/`,
+            config
+        );
+
+        dispatch({
+            type: DELETE_SAVED_CARD_SUCCESS,
+            payload: data,
+        });
+
+    } catch (error) {
+        dispatch({
+            type: DELETE_SAVED_CARD_FAIL,
+            payload:
+                error.response && error.response.data.detail
+                    ? error.response.data.detail
+                    : error.message,
+        });
+    }
+};
