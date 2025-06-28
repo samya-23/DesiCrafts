@@ -28,23 +28,12 @@ DesiCrafts is a full-stack e-commerce platform designed to empower villagers and
 
 <hr>
 
-<h2>📺 Live Demo</h2>
-<p>
-  <b>Check out DesiCrafts in action:</b> <a href="https://your-deployed-app-link.com" target="_blank">Live Site</a>
-  <br>
-  <i>Note: The site may take up to 30 seconds to load (free-tier hosting). For best experience, run locally using the instructions below.</i>
-</p>
-
-<hr>
-
 <h2>📋 Table of Contents</h2>
 <ul>
   <li><a href="#features">Features Overview</a></li>
-  <li><a href="#screens">Screens & Functionality</a></li>
+  <li><a href="#screens">Functionality</a></li>
   <li><a href="#installation">Installation & Setup</a></li>
   <li><a href="#tech-stack">Tech Stack</a></li>
-  <li><a href="#contributing">Contributing</a></li>
-  <li><a href="#license">License</a></li>
 </ul>
 
 <hr>
@@ -63,7 +52,7 @@ DesiCrafts is a full-stack e-commerce platform designed to empower villagers and
 
 <hr>
 
-<h2 id="screens">🖼️ Screens & Functionality</h2>
+<h2 id="screens">🛠️ Functionality</h2>
 
 <h3>Product Browsing</h3>
 <ul>
@@ -162,26 +151,6 @@ python manage.py runserver</code></pre>
   <li><b>Payments:</b> Stripe API</li>
   <li><b>Database:</b> SQLite (default), can be configured for PostgreSQL/MySQL</li>
 </ul>
-
-<hr>
-
-<h2 id="contributing">🤝 Contributing</h2>
-<p>
-We welcome contributions to DesiCrafts! If you have ideas for new features, UI improvements, or bug fixes, please open an issue or submit a pull request.
-</p>
-<ol>
-  <li>Fork this repository</li>
-  <li>Create a new branch (<code>git checkout -b feature-name</code>)</li>
-  <li>Commit your changes</li>
-  <li>Push to your branch and open a pull request</li>
-</ol>
-
-<hr>
-
-<h2 id="license">📄 License</h2>
-<p>
-  This project is open-source and available under the <b>MIT License</b>.
-</p>
 
 <hr>
 
